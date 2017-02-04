@@ -105,6 +105,8 @@ install("check", "meteor/check/match.js");
 install("retry");
 install("ddp-common");
 install("ddp-client");
+install("rate-limit");
+install("ddp-rate-limiter");
 install("logging");
 install("routepolicy");
 install("deps");
@@ -146,11 +148,21 @@ install("iron:location");
 install("reactive-dict");
 install("iron:controller");
 install("iron:router");
+install("accounts-ui");
+install("npm-bcrypt", "meteor/npm-bcrypt/wrapper.js");
+install("accounts-base", "meteor/accounts-base/server_main.js");
+install("sha");
+install("srp");
+install("email");
+install("accounts-password");
+install("handlebars");
+install("deepwell:authorization");
 install("livedata");
 install("hot-code-push");
 install("launch-screen");
 install("autoupdate");
 install("reload");
+install("service-configuration");
 
 ///////////////////////////////////////////////////////////////////////////////
 

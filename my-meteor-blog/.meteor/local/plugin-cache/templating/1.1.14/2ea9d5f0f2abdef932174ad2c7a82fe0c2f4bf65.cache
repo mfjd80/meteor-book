@@ -1,1 +1,0 @@
-{"head":"","body":"","js":"\nTemplate.__checkName(\"home\");\nTemplate[\"home\"] = new Template(\"Template.home\", (function() {\n  var view = this;\n  return Blaze.Each(function() {\n    return Spacebars.call(view.lookup(\"postsList\"));\n  }, function() {\n    return [ \"\\n\t\", Spacebars.include(view.lookupTemplate(\"postInList\")), \"\\n\" ];\n  });\n}));\n","bodyAttrs":{}}

@@ -24,3 +24,6 @@ jeeeyul:moment-with-langs
 markdown
 session
 iron:router
+accounts-ui
+accounts-password
+deepwell:authorization

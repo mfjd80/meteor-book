@@ -1,15 +1,9 @@
-// if(Meteor.isClient) {
+// #Users and permissions -> Adding the accounts packages
+Accounts.config({
+    forbidClientAccountCreation: true
+});
 
-// 	Tracker.autorun(function(c){
-// 		var example = Session.get('mySessionExample');
-
-// 		if(!c.firstRun){
-// 			if(Session.equals('mySessionExample', 'stop')){
-// 				alert('We stopped our reactive Function');
-// 				c.stop();
-// 			} else {
-// 				alert(example);
-// 			}
-// 		}
-// 	});
-// }
+// # Users and Permissions -> Adding permissions
+if(Meteor.isClient) {
+	Meteor.subscribe("userRoles");
+}

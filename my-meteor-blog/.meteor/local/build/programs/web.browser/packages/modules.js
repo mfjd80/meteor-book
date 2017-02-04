@@ -181,12 +181,24 @@ install("iron:middleware-stack");                                            // 
 install("iron:location");                                                    // 87
 install("iron:controller");                                                  // 88
 install("iron:router");                                                      // 89
-install("webapp");                                                           // 90
-install("livedata");                                                         // 91
-install("hot-code-push");                                                    // 92
-install("launch-screen");                                                    // 93
-install("autoupdate");                                                       // 94
-                                                                             // 95
+install("ddp-rate-limiter");                                                 // 90
+install("localstorage");                                                     // 91
+install("callback-hook");                                                    // 92
+install("accounts-base", "meteor/accounts-base/client_main.js");             // 93
+install("service-configuration");                                            // 94
+install("sha");                                                              // 95
+install("srp");                                                              // 96
+install("accounts-password");                                                // 97
+install("accounts-ui-unstyled");                                             // 98
+install("accounts-ui");                                                      // 99
+install("handlebars");                                                       // 100
+install("deepwell:authorization");                                           // 101
+install("webapp");                                                           // 102
+install("livedata");                                                         // 103
+install("hot-code-push");                                                    // 104
+install("launch-screen");                                                    // 105
+install("autoupdate");                                                       // 106
+                                                                             // 107
 ///////////////////////////////////////////////////////////////////////////////
 
 },"process.js":["process",function(require,exports,module){

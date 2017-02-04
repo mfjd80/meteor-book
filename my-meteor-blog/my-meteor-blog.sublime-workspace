@@ -8,34 +8,18 @@
 	"buffers":
 	[
 		{
-			"file": "client/index.html",
+			"file": "server/publications.js",
 			"settings":
 			{
-				"buffer_size": 72,
+				"buffer_size": 768,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "client/templates/layout.html",
+			"file": "client/subscriptions.js",
 			"settings":
 			{
-				"buffer_size": 312,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/templates/home.html",
-			"settings":
-			{
-				"buffer_size": 399,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/templates/about.html",
-			"settings":
-			{
-				"buffer_size": 378,
+				"buffer_size": 268,
 				"line_ending": "Windows"
 			}
 		},
@@ -43,23 +27,82 @@
 			"file": "client/templates/home.js",
 			"settings":
 			{
-				"buffer_size": 667,
+				"buffer_size": 1635,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "client/templates/examples.html",
+			"file": "client/templates/home.html",
 			"settings":
 			{
-				"buffer_size": 394,
+				"buffer_size": 701,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "client/templates/examples.js",
+			"contents": "if(Meteor.isClient){\n	Session.setDefault('lazyloadLimit', 2);\n}\n\n// Router.configure({\n// 	layoutTemplate: 'layout'\n// });\n\nRouter.map(function(){\n\n	this.route('Home', {\n		path: '/',\n		template: 'home',\n		subscriptions: function(){\n			return Meteor.subscribe(\"lazyload-posts\", Session.get('lazyloadLimit'));\n		}\n	});\n\n	this.route('About', {\n		path: '/about',\n		template: 'about'\n	});\n\n	this.route('Post', {\n		path: '/posts/:slug',\n		template: 'post',\n		controller: 'PostController'\n\n		// waitOn: function(){\n		// 	return Meteor.subscribe('single-post', this.params.slug);\n		// },\n\n		// data: function(){\n		// 	return Posts.findOne({slug: this.params.slug});\n		// }\n	});\n\n\n	this.route('Edit Post', {\n		path: '/edit-post/:slug',\n		template: 'editPost',\n		controller:'PostController'\n	});\n\n	this.route('Create Post', {\n		path: '/create-post',\n		template: 'editPost',\n	});\n\n\n});\n\nRouter.configure({\n	layoutTemplate: 'layout',\n	notFoundTemplate: 'notFound',\n	loadingTemplate: 'loading',\n\n	onAfterAction: function(){\n		var data = Posts.findOne({slug: this.params.slug});\n\n		if(_.isObject(data) && !_.isArray(data))\n			document.title = 'My Meteor Blog - ' + data.title;\n		else\n			document.title = 'My Meteor Blog - ' + this.route.getName();\n	}\n});\n\nPostController = RouteController.extend({\n	waitOn: function() {\n		return Meteor.subscribe('single-post', this.params.slug);\n	},\n\n	data: function(){\n		return Posts.findOne({slug: this.params.slug});\n	}\n});\n\nvar requiresLogin = function(){\n	if (!Meteor.user() || !Meteor.user().roles || !Meteor.user().roles.admin) {\n		this.render('notFound');\n	} else {\n		this.next();\n	}\n};\n\nRouter.onBeforeAction(requiresLogin, {only: ['Create Post','Edit Post']});",
+			"file": "routes.js",
+			"file_size": 1775,
+			"file_write_time": 131306598361204196,
 			"settings":
 			{
-				"buffer_size": 382,
+				"buffer_size": 1690,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/index.html",
+			"settings":
+			{
+				"buffer_size": 59,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/templates/layout.html",
+			"settings":
+			{
+				"buffer_size": 571,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/templates/post.html",
+			"settings":
+			{
+				"buffer_size": 332,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/templates/postInList.html",
+			"settings":
+			{
+				"buffer_size": 303,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "main.js",
+			"settings":
+			{
+				"buffer_size": 464,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/templates/editPost.html",
+			"settings":
+			{
+				"buffer_size": 553,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "server/main.js",
+			"settings":
+			{
+				"buffer_size": 1837,
 				"line_ending": "Windows"
 			}
 		}
@@ -88,6 +131,17 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Owner/Documents/GitHub/meteor-book/my-meteor-blog/server/main.js",
+		"/C/Users/Owner/Documents/GitHub/meteor-book/my-meteor-blog/collections.js",
+		"/C/Users/Owner/Documents/GitHub/meteor-book/my-meteor-blog/client/template-helpers.js",
+		"/C/Users/Owner/Documents/GitHub/meteor-book/my-meteor-blog/client/templates/postInList.html",
+		"/C/Users/Owner/Documents/GitHub/meteor-book/my-meteor-blog/client/templates/examples.js",
+		"/C/Users/Owner/Documents/GitHub/meteor-book/my-meteor-blog/client/templates/examples.html",
+		"/C/Users/Owner/Documents/GitHub/meteor-book/my-meteor-blog/client/templates/home.js",
+		"/C/Users/Owner/Documents/GitHub/meteor-book/my-meteor-blog/client/templates/about.html",
+		"/C/Users/Owner/Documents/GitHub/meteor-book/my-meteor-blog/client/templates/home.html",
+		"/C/Users/Owner/Documents/GitHub/meteor-book/my-meteor-blog/client/templates/layout.html",
+		"/C/Users/Owner/Documents/GitHub/meteor-book/my-meteor-blog/client/index.html",
 		"/C/Users/Owner/Documents/GitHub/meteor-book/my-meteor-blog/.gitignore",
 		"/C/Users/Owner/Desktop/GPServices_Workshop_2016-master/GP/scripts/property_card.py",
 		"/C/Users/Owner/Desktop/GPServices_Workshop_2016-master/GP/scripts/export_features.py",
@@ -117,6 +171,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"time",
 			"tempfile",
 			"run",
 			"{\n",
@@ -139,55 +194,54 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "client/index.html",
+					"file": "server/publications.js",
 					"settings":
 					{
-						"buffer_size": 72,
+						"buffer_size": 768,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								72,
-								72
+								768,
+								768
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 90.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "client/templates/layout.html",
+					"file": "client/subscriptions.js",
 					"settings":
 					{
-						"buffer_size": 312,
+						"buffer_size": 268,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								278,
-								278
+								268,
+								164
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -197,70 +251,18 @@
 				},
 				{
 					"buffer": 2,
-					"file": "client/templates/home.html",
-					"settings":
-					{
-						"buffer_size": 399,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								387,
-								387
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "client/templates/about.html",
-					"settings":
-					{
-						"buffer_size": 378,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								23,
-								23
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
 					"file": "client/templates/home.js",
 					"settings":
 					{
-						"buffer_size": 667,
+						"buffer_size": 1635,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								667,
-								667
+								1450,
+								1450
 							]
 						],
 						"settings":
@@ -269,25 +271,103 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 315.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "client/templates/examples.html",
+					"buffer": 3,
+					"file": "client/templates/home.html",
 					"settings":
 					{
-						"buffer_size": 394,
+						"buffer_size": 701,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								382,
-								382
+								645,
+								645
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 180.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "routes.js",
+					"settings":
+					{
+						"buffer_size": 1690,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1240,
+								1240
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 665.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "client/index.html",
+					"settings":
+					{
+						"buffer_size": 59,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								51,
+								51
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "client/templates/layout.html",
+					"settings":
+					{
+						"buffer_size": 571,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								202,
+								202
 							]
 						],
 						"settings":
@@ -302,19 +382,71 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "client/templates/examples.js",
+					"buffer": 7,
+					"file": "client/templates/post.html",
 					"settings":
 					{
-						"buffer_size": 382,
+						"buffer_size": 332,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								382,
-								382
+								332,
+								332
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "client/templates/postInList.html",
+					"settings":
+					{
+						"buffer_size": 303,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								302,
+								302
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "main.js",
+					"settings":
+					{
+						"buffer_size": 464,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								464,
+								464
 							]
 						],
 						"settings":
@@ -323,6 +455,59 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "client/templates/editPost.html",
+					"settings":
+					{
+						"buffer_size": 553,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								553,
+								553
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "server/main.js",
+					"settings":
+					{
+						"buffer_size": 1837,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1837,
+								1837
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 945.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -386,6 +571,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 127.0,
+	"side_bar_width": 203.0,
 	"status_bar_visible": true
 }

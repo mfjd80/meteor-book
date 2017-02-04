@@ -1,28 +1,20 @@
 <template name="home">
-{{#markdown}}
+	{{#markdown}}
 ## Welcome to my Blog
 Here I'm talking about my latest discoveries from the world of JavaScript.
-{{/markdown}}
+	{{/markdown}}
 
-<!-- {{exampleHelper}} -->
- 
-<!-- {{> contextExample dataContextHelper}} -->
 
-<!-- {{#with dataContextHelper}}
-{{> contextExample}}
-{{/with}} -->
+	<!-- #Users and Permissions -> Adding admin functionality to the templates -->
+	{{#if currentUser.roles.admin}}
+		<a href="/create-post" class="createNewPost">Create new post</a>
+	{{/if}}
 
-<!-- {{#blockHelperExample false}}ls
-<span>Some Content</span>
-{{else}}
-<span>Some Warning</span>
-{{/blockHelperExample}}
- -->
+	<!-- Listing posts -->
+	{{#each postsList}}
+		{{> postInList}}
+	{{/each}}
 
-<h2>This comes from our Session: {{sessionExample}}</h2>
-
-{{#each postsList}}
-	{{> postInList}}
-{{/each}}
-<button class="lazyload">Load more</button>
+	<!-- #Controlling the data flow -> Lazy load posts or how to change subscriptions -->
+	<button class="lazyload">Load more</button>
 </template>

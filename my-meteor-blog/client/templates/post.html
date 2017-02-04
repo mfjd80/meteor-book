@@ -4,11 +4,16 @@
 
 	<small>
 		Posted {{formatTime timeCreated "fromNow"}} by {{author}}
+	
+		<!-- #Users and Permissions -> Adding admin functionality to the templates -->
+		{{#if currentUser.roles.admin}}
+			| <a href="/edit-post/{{slug}}">Edit post</a>
+		{{/if}}
 	</small>
-
+	
 	<div class="postContent">
 		{{#markdown}}
-		{{text}}
-		{{/markdown}}
+{{text}}
+		{{/markdown}}	
 	</div>
 </template>

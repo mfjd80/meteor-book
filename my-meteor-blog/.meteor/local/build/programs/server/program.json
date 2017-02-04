@@ -119,6 +119,14 @@
       "path": "packages/ddp-client.js"
     },
     {
+      "sourceMap": "packages/rate-limit.js.map",
+      "path": "packages/rate-limit.js"
+    },
+    {
+      "sourceMap": "packages/ddp-rate-limiter.js.map",
+      "path": "packages/ddp-rate-limiter.js"
+    },
+    {
       "node_modules": "/C/Users/Owner/AppData/Local/.meteor/packages/logging/1.1.15/npm/node_modules",
       "sourceMap": "packages/logging.js.map",
       "path": "packages/logging.js"
@@ -280,6 +288,42 @@
       "path": "packages/iron_router.js"
     },
     {
+      "path": "packages/accounts-ui.js"
+    },
+    {
+      "node_modules": "/C/Users/Owner/AppData/Local/.meteor/packages/npm-bcrypt/0.9.1/npm/node_modules",
+      "sourceMap": "packages/npm-bcrypt.js.map",
+      "path": "packages/npm-bcrypt.js"
+    },
+    {
+      "sourceMap": "packages/accounts-base.js.map",
+      "path": "packages/accounts-base.js"
+    },
+    {
+      "sourceMap": "packages/sha.js.map",
+      "path": "packages/sha.js"
+    },
+    {
+      "sourceMap": "packages/srp.js.map",
+      "path": "packages/srp.js"
+    },
+    {
+      "node_modules": "/C/Users/Owner/AppData/Local/.meteor/packages/email/1.1.17/npm/node_modules",
+      "sourceMap": "packages/email.js.map",
+      "path": "packages/email.js"
+    },
+    {
+      "sourceMap": "packages/accounts-password.js.map",
+      "path": "packages/accounts-password.js"
+    },
+    {
+      "path": "packages/handlebars.js"
+    },
+    {
+      "sourceMap": "packages/deepwell_authorization.js.map",
+      "path": "packages/deepwell_authorization.js"
+    },
+    {
       "path": "packages/livedata.js"
     },
     {
@@ -301,6 +345,10 @@
     {
       "sourceMap": "app/app.js.map",
       "path": "app/app.js"
+    },
+    {
+      "sourceMap": "packages/service-configuration.js.map",
+      "path": "packages/service-configuration.js"
     }
   ]
 }

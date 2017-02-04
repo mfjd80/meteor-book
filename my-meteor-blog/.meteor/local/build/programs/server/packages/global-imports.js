@@ -10,6 +10,7 @@ moment = Package['jeeeyul:moment-with-langs'].moment;
 Showdown = Package.markdown.Showdown;
 Router = Package['iron:router'].Router;
 RouteController = Package['iron:router'].RouteController;
+AuthManager = Package['deepwell:authorization'].AuthManager;
 Meteor = Package.meteor.Meteor;
 global = Package.meteor.global;
 meteorEnv = Package.meteor.meteorEnv;
@@ -33,6 +34,7 @@ Set = Package['ecmascript-runtime'].Set;
 meteorBabelHelpers = Package['babel-runtime'].meteorBabelHelpers;
 Promise = Package.promise.Promise;
 Iron = Package['iron:core'].Iron;
+Accounts = Package['accounts-base'].Accounts;
 Autoupdate = Package.autoupdate.Autoupdate;
 HTML = Package.htmljs.HTML;
 
