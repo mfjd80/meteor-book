@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"contextExamples\");\nTemplate[\"contextExamples\"] = new Template(\"Template.contextExamples\", (function() {\n  var view = this;\n  return HTML.P(Blaze.View(\"lookup:someText\", function() {\n    return Spacebars.mustache(view.lookup(\"someText\"));\n  }));\n}));\n","bodyAttrs":{}}
