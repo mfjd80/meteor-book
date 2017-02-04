@@ -1,0 +1,26 @@
+<template name="home">
+{{#markdown}}
+## Welcome to my Blog
+Here I'm talking about my latest discoveries from the world of JavaScript.
+{{/markdown}}
+
+<!-- {{exampleHelper}} -->
+ 
+<!-- {{> contextExample dataContextHelper}} -->
+
+<!-- {{#with dataContextHelper}}
+{{> contextExample}}
+{{/with}} -->
+
+<!-- {{#blockHelperExample false}}
+<span>Some Content</span>
+{{else}}
+<span>Some Warning</span>
+{{/blockHelperExample}}
+ -->
+
+{{#each postsList}}
+	{{> postInList}}
+{{/each}}
+<button class="lazyload">Load more</button>
+</template>
