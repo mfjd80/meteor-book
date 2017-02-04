@@ -172,9 +172,35 @@ Router.configure({                                                          // 3
 });                                                                         // 39
 //////////////////////////////////////////////////////////////////////////////
 
+},"main.js":function(){
+
+//////////////////////////////////////////////////////////////////////////////
+//                                                                          //
+// main.js                                                                  //
+//                                                                          //
+//////////////////////////////////////////////////////////////////////////////
+                                                                            //
+// if(Meteor.isClient) {                                                    //
+                                                                            //
+// 	Tracker.autorun(function(c){                                            //
+// 		var example = Session.get('mySessionExample');                         //
+                                                                            //
+// 		if(!c.firstRun){                                                       //
+// 			if(Session.equals('mySessionExample', 'stop')){                       //
+// 				alert('We stopped our reactive Function');                           //
+// 				c.stop();                                                            //
+// 			} else {                                                              //
+// 				alert(example);                                                      //
+// 			}                                                                     //
+// 		}                                                                      //
+// 	});                                                                     //
+// }                                                                        //
+//////////////////////////////////////////////////////////////////////////////
+
 }},{"extensions":[".js",".json"]});
 require("./server/publications.js");
 require("./collections.js");
 require("./routes.js");
 require("./server/main.js");
+require("./main.js");
 //# sourceMappingURL=app.js.map

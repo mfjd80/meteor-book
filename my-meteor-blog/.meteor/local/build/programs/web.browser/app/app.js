@@ -31,13 +31,15 @@ Template["home"] = new Template("Template.home", (function() {                  
   var view = this;                                                                                                  // 4
   return [ Spacebars.include(view.lookupTemplate("markdown"), function() {                                          // 5
     return "\n## Welcome to my Blog\nHere I'm talking about my latest discoveries from the world of JavaScript.\n";
-  }), HTML.Raw("\n\n<!-- {{exampleHelper}} -->\n \n<!-- {{> contextExample dataContextHelper}} -->\n\n<!-- {{#with dataContextHelper}}\n{{> contextExample}}\n{{/with}} -->\n\n<!-- {{#blockHelperExample false}}\n<span>Some Content</span>\n{{else}}\n<span>Some Warning</span>\n{{/blockHelperExample}}\n -->\n\n"), Blaze.Each(function() {
-    return Spacebars.call(view.lookup("postsList"));                                                                // 8
-  }, function() {                                                                                                   // 9
-    return [ "\n	", Spacebars.include(view.lookupTemplate("postInList")), "\n" ];                                   // 10
-  }), HTML.Raw('\n<button class="lazyload">Load more</button>') ];                                                  // 11
-}));                                                                                                                // 12
-                                                                                                                    // 13
+  }), HTML.Raw("\n\n<!-- {{exampleHelper}} -->\n \n<!-- {{> contextExample dataContextHelper}} -->\n\n<!-- {{#with dataContextHelper}}\n{{> contextExample}}\n{{/with}} -->\n\n<!-- {{#blockHelperExample false}}ls\n<span>Some Content</span>\n{{else}}\n<span>Some Warning</span>\n{{/blockHelperExample}}\n -->\n\n"), HTML.H2("This comes from our Session: ", Blaze.View("lookup:sessionExample", function() {
+    return Spacebars.mustache(view.lookup("sessionExample"));                                                       // 8
+  })), "\n\n", Blaze.Each(function() {                                                                              // 9
+    return Spacebars.call(view.lookup("postsList"));                                                                // 10
+  }, function() {                                                                                                   // 11
+    return [ "\n	", Spacebars.include(view.lookupTemplate("postInList")), "\n" ];                                   // 12
+  }), HTML.Raw('\n<button class="lazyload">Load more</button>') ];                                                  // 13
+}));                                                                                                                // 14
+                                                                                                                    // 15
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"template.layout.js":function(){
@@ -176,19 +178,23 @@ Template["postInList"] = new Template("Template.postInList", (function() {      
                                                                                                                     //
 Template.home.created = function () {                                                                               // 1
 	console.log('Created the home template');                                                                          // 2
-};                                                                                                                  // 3
                                                                                                                     //
-Template.home.rendered = function () {                                                                              // 5
-	console.log('Rendered the home template');                                                                         // 6
+	this.autorun(function () {                                                                                         // 4
+		alert(Session.get('mySessionExample'));                                                                           // 5
+	});                                                                                                                // 6
+};                                                                                                                  // 7
+                                                                                                                    //
+Template.home.rendered = function () {                                                                              // 9
+	console.log('Rendered the home template');                                                                         // 10
                                                                                                                     //
 	// this.find('p').innerHTML = "We just replaced that text!";                                                       //
-};                                                                                                                  // 9
-                                                                                                                    //
-Template.home.destroyed = function () {                                                                             // 11
-	console.log('Destroyed the home template');                                                                        // 12
 };                                                                                                                  // 13
                                                                                                                     //
-Template.home.helpers({                                                                                             // 15
+Template.home.destroyed = function () {                                                                             // 15
+	console.log('Destroyed the home template');                                                                        // 16
+};                                                                                                                  // 17
+                                                                                                                    //
+Template.home.helpers({                                                                                             // 19
 	// exampleHelper: function(){                                                                                      //
 	// 	return new Spacebars.SafeString('This text came from a helper with some <strong>HTML</strong>.');              //
 	// },                                                                                                              //
@@ -219,25 +225,33 @@ Template.home.helpers({                                                         
 	// 	];                                                                                                             //
 	// }                                                                                                               //
                                                                                                                     //
-	postsList: function () {                                                                                           // 46
-		function postsList() {                                                                                            // 46
-			return Posts.find({}, { sort: { timeCreated: -1 } });                                                            // 47
-		}                                                                                                                 // 48
+	postsList: function () {                                                                                           // 50
+		function postsList() {                                                                                            // 50
+			return Posts.find({}, { sort: { timeCreated: -1 } });                                                            // 51
+		}                                                                                                                 // 52
                                                                                                                     //
-		return postsList;                                                                                                 // 46
-	}()                                                                                                                // 46
-});                                                                                                                 // 15
+		return postsList;                                                                                                 // 50
+	}(),                                                                                                               // 50
                                                                                                                     //
-Template.home.events({                                                                                              // 51
-	'click button.lazyload': function () {                                                                             // 52
-		function clickButtonLazyload(e, template) {                                                                       // 52
-			var currentLimit = Session.get('lazyloadLimit');                                                                 // 53
-			Session.set('lazyloadLimit', currentLimit + 2);                                                                  // 54
-		}                                                                                                                 // 55
+	sessionExample: function () {                                                                                      // 54
+		function sessionExample() {                                                                                       // 54
+			return Session.get('mySessionExample');                                                                          // 55
+		}                                                                                                                 // 56
                                                                                                                     //
-		return clickButtonLazyload;                                                                                       // 52
-	}()                                                                                                                // 52
-});                                                                                                                 // 51
+		return sessionExample;                                                                                            // 54
+	}()                                                                                                                // 54
+});                                                                                                                 // 19
+                                                                                                                    //
+Template.home.events({                                                                                              // 59
+	'click button.lazyload': function () {                                                                             // 60
+		function clickButtonLazyload(e, template) {                                                                       // 60
+			var currentLimit = Session.get('lazyloadLimit');                                                                 // 61
+			Session.set('lazyloadLimit', currentLimit + 2);                                                                  // 62
+		}                                                                                                                 // 63
+                                                                                                                    //
+		return clickButtonLazyload;                                                                                       // 60
+	}()                                                                                                                // 60
+});                                                                                                                 // 59
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }},"template.index.js":function(){
@@ -380,6 +394,31 @@ Router.configure({                                                              
 });                                                                                                                 // 39
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+},"main.js":function(){
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                                  //
+// main.js                                                                                                          //
+//                                                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                    //
+// if(Meteor.isClient) {                                                                                            //
+                                                                                                                    //
+// 	Tracker.autorun(function(c){                                                                                    //
+// 		var example = Session.get('mySessionExample');                                                                 //
+                                                                                                                    //
+// 		if(!c.firstRun){                                                                                               //
+// 			if(Session.equals('mySessionExample', 'stop')){                                                               //
+// 				alert('We stopped our reactive Function');                                                                   //
+// 				c.stop();                                                                                                    //
+// 			} else {                                                                                                      //
+// 				alert(example);                                                                                              //
+// 			}                                                                                                             //
+// 		}                                                                                                              //
+// 	});                                                                                                             //
+// }                                                                                                                //
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }},{"extensions":[".js",".json",".html",".less"]});
 require("./client/templates/template.about.js");
 require("./client/templates/template.home.js");
@@ -393,3 +432,4 @@ require("./client/subscriptions.js");
 require("./client/template-helpers.js");
 require("./collections.js");
 require("./routes.js");
+require("./main.js");
